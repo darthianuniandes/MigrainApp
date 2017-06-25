@@ -53,7 +53,7 @@ public class Recording extends AppCompatActivity {
                 record.setEnabled(false);
                 stop.setEnabled(true);
 
-                Toast.makeText(getApplicationContext(), "Recording started", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Recording started", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -66,7 +66,7 @@ public class Recording extends AppCompatActivity {
                 record.setEnabled(true);
                 stop.setEnabled(false);
                 play.setEnabled(true);
-                Toast.makeText(getApplicationContext(), "Audio Recorder successfully", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Audio Recorder successfully", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -80,7 +80,7 @@ public class Recording extends AppCompatActivity {
                     mediaPlayer.prepare();
                     mediaPlayer.start();
 
-                    Toast.makeText(getApplicationContext(), "Playing Audio", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Playing Audio", Toast.LENGTH_SHORT).show();
 
                 } catch (Exception e) {
                     // make something
