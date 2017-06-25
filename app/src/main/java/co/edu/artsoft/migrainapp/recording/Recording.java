@@ -5,6 +5,7 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -19,7 +20,7 @@ import co.edu.artsoft.migrainapp.R;
 
 public class Recording extends AppCompatActivity {
 
-    private Button play, stop, record;
+    private Button play, stop, record, hold;
     private MediaRecorder myAudioRecorder;
     private String outputFile;
 
@@ -30,6 +31,7 @@ public class Recording extends AppCompatActivity {
         play = (Button) findViewById(R.id.play);
         stop = (Button) findViewById(R.id.stop);
         record = (Button) findViewById(R.id.record);
+        hold = (Button) findViewById(R.id.hold);
         stop.setEnabled(false);
         play.setEnabled(false);
 
@@ -88,6 +90,43 @@ public class Recording extends AppCompatActivity {
 
             }
         });
+
+        hold.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        resetRecording();
+                        try {
+                            myAudioRecorder.prepare();
+                            myAudioRecorder.start();
+                        } catch (IllegalStateException ise) {
+                            // make something ...
+                        } catch (IOException ioe) {
+                            // make something
+                        }
+
+                        record.setEnabled(false);
+                        stop.setEnabled(true);
+
+                        Toast.makeText(getApplicationContext(), "Recording started", Toast.LENGTH_SHORT).show();
+                        return true; // if you want to handle the touch event
+                    
+                    case MotionEvent.ACTION_UP:
+                        myAudioRecorder.stop();
+                        myAudioRecorder.release();
+                        myAudioRecorder = null;
+                        record.setEnabled(true);
+                        stop.setEnabled(false);
+                        play.setEnabled(true);
+                        Toast.makeText(getApplicationContext(), "Audio Recorder successfully", Toast.LENGTH_SHORT).show();
+                        return true; // if you want to handle the touch event
+                }
+                return false;
+            }
+        });
+
+
 
     }
 
