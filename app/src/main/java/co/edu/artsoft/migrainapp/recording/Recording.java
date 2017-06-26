@@ -175,6 +175,7 @@ public class Recording extends AppCompatActivity {
 
     ProgressDialog progress;
 
+
     void resetRecording(){
         myAudioRecorder = new MediaRecorder();
         myAudioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
