@@ -1,10 +1,14 @@
 package co.edu.artsoft.migrainapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import java.io.File;
 
 import co.edu.artsoft.migrainapp.controller.ConsumoRest;
 import co.edu.artsoft.migrainapp.recording.Recording;
@@ -48,4 +52,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Recording.class);
         startActivity(intent);
     }
+
 }
